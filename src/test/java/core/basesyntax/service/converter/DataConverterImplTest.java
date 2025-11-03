@@ -24,7 +24,7 @@ public class DataConverterImplTest {
     }
 
     @Test
-    void convertAll_correctLineEntry_Ok() throws IOException {
+    void convertAll_validLine_Ok() throws IOException {
         List<String> fruits = List.of("type,fruit,quantity",
                 "b,banana,100");
         Path tempWrite = Files.write(tempFiles, fruits);
@@ -38,7 +38,7 @@ public class DataConverterImplTest {
     }
 
     @Test
-    void convertAll_lineLengthNotCorrect_notOk() throws IOException {
+    void convertAll_invalidLineLength_throwsRuntimeException() throws IOException {
         List<String> fruits = List.of("type,fruit,quantity",
                 "banana,100");
         Path tempWrite = Files.write(tempFiles, fruits);
@@ -49,7 +49,7 @@ public class DataConverterImplTest {
     }
 
     @Test
-    void convertAll_numberNotCorrect_notOk() throws IOException {
+    void convertAll_invalidQuantityFormat_throwsRuntimeException() throws IOException {
         List<String> fruits = List.of("type,fruit,quantity",
                 "b,banana,apple");
         Path tempWrite = Files.write(tempFiles, fruits);
@@ -60,7 +60,7 @@ public class DataConverterImplTest {
     }
 
     @Test
-    void convertAll_numberNegative_notOk() throws IOException {
+    void convertAll_negativeQuantity_throwsRuntimeException() throws IOException {
         List<String> fruits = List.of("type,fruit,quantity",
                 "b,banana,-1");
         Path tempWrite = Files.write(tempFiles, fruits);

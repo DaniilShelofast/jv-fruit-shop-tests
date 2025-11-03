@@ -29,7 +29,7 @@ public class ReportGeneratorImplTest {
     }
 
     @Test
-    void getReport_shouldGenerateCorrectReport_Ok() throws IOException {
+    void getReport_validRecords_Ok() throws IOException {
         storage.add("banana", 100);
         storage.add("apple", 50);
         String report = reportGenerator.getReport();
@@ -42,7 +42,7 @@ public class ReportGeneratorImplTest {
     }
 
     @Test
-    void getReport_emptyInventory_headerOnly_Ok() {
+    void getReport_headerNotEmpty_Ok() {
         String report = reportGenerator.getReport();
         assertEquals("fruit,quantity", report.trim());
     }

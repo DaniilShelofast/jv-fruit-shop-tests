@@ -22,7 +22,7 @@ public class FileWriterServiceTest {
     }
 
     @Test
-    void writeAll_writeFileEqualsReadFile_Ok() throws IOException {
+    void writeAll_validData_Ok() throws IOException {
         String content = "Hello World!" + System.lineSeparator() + "Hello Ukraine.";
         writeFileFruit.writeAll(content, files.toString());
         String readFile = Files.readString(files);
@@ -30,14 +30,14 @@ public class FileWriterServiceTest {
     }
 
     @Test
-    void writeAll_writeFileFruit_notNull_notOk() {
+    void writeAll_dataFruitsIsNull_throwsRuntimeException() {
         assertThrows(RuntimeException.class, () -> {
             writeFileFruit.writeAll(null, files.toString());
         });
     }
 
     @Test
-    void writeAll_writeFileFruit_notEmpty_notOk() {
+    void writeAll_dataIsEmpty_throwsRuntimeException() {
         assertThrows(RuntimeException.class, () -> {
             writeFileFruit.writeAll(" ", files.toString());
         });

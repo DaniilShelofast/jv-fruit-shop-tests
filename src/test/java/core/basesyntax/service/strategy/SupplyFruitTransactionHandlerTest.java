@@ -24,14 +24,14 @@ public class SupplyFruitTransactionHandlerTest {
     }
 
     @Test
-    void handler_notNull_notOk() {
+    void handler_supplyFruitTransactionNull_throwsRuntimeException() {
         assertThrows(RuntimeException.class, () -> {
             fruitTransactionHandler.handler(null);
         });
     }
 
     @Test
-    void handler_notEmptyFruit_notOk() {
+    void handler_supplyFruitNameIsEmpty_throwsRuntimeException() {
         FruitTransaction fruitTransaction = new
                 FruitTransaction(Operation.getOperationType("s"), " ", Integer.parseInt("100"));
         assertThrows(RuntimeException.class, () -> {
@@ -40,7 +40,7 @@ public class SupplyFruitTransactionHandlerTest {
     }
 
     @Test
-    void handler_notNullFruit_notOk() {
+    void handler_supplyFruitNameIsNull_throwsRuntimeException() {
         FruitTransaction fruitTransaction = new
                 FruitTransaction(Operation.getOperationType("s"), null, Integer.parseInt("100"));
         assertThrows(RuntimeException.class, () -> {
@@ -49,9 +49,9 @@ public class SupplyFruitTransactionHandlerTest {
     }
 
     @Test
-    void handler_notNegativeNumber_notOk() {
-        FruitTransaction fruitTransaction = new
-                FruitTransaction(Operation.getOperationType("s"), "banana", Integer.parseInt("-1"));
+    void handler_supplyFruitQuantityNegative_throwsRuntimeException() {
+        FruitTransaction fruitTransaction = new FruitTransaction(Operation.getOperationType("s"),
+                "banana", Integer.parseInt("-1"));
         assertThrows(RuntimeException.class, () -> {
             fruitTransactionHandler.handler(fruitTransaction);
         });

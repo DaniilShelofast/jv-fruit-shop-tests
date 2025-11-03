@@ -22,7 +22,7 @@ public class FileReaderServiceImplTest {
     }
 
     @Test
-    void readAll_readFileSeveralLines_Ok() throws IOException {
+    void readAll_validFile_Ok() throws IOException {
         List<String> list = List.of("Hello World!",
                 "Hello Ukraine.");
         Path tempWrite = Files.write(files, list);
@@ -31,13 +31,13 @@ public class FileReaderServiceImplTest {
     }
 
     @Test
-    void readAll_readFileEmpty_Ok() {
+    void readAll_fileEmpty_Ok() {
         List<String> lines = readFileFruit.readAll(files.toString());
         assertEquals(0, lines.size(), "File should return an empty list");
     }
 
     @Test
-    void readAll_readFileInvalidPath_notOk() {
+    void readAll_invalidPath_throwsRuntimeException() {
         String filePath = "src/test/resources/readFileInvalid.csv";
         assertThrows(RuntimeException.class, () -> {
             readFileFruit.readAll(filePath);

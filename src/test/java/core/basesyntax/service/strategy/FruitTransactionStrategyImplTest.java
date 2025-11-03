@@ -19,28 +19,28 @@ public class FruitTransactionStrategyImplTest {
     }
 
     @Test
-    void get_notNull_notOk() {
+    void get_fruitStrategyIsNull_throwsRuntimeException() {
         assertThrows(RuntimeException.class, () -> {
             fruitTransactionStrategy.get(null);
         });
     }
 
     @Test
-    void get_notEmpty_notOk() {
+    void get_operationTypeIsEmpty_throwsRuntimeException() {
         assertThrows(RuntimeException.class, () -> {
             fruitTransactionStrategy.get(Operation.getOperationType(" "));
         });
     }
 
     @Test
-    void get_notCorrectOperationType_notOk() {
+    void get_operationTypeInvalid_throwsRuntimeException() {
         assertThrows(RuntimeException.class, () -> {
             fruitTransactionStrategy.get(Operation.getOperationType("G"));
         });
     }
 
     @Test
-    void get_notNullOperationType_notOk() {
+    void get_operationTypeIsNull_throwsRuntimeException() {
         assertThrows(RuntimeException.class, () -> {
             fruitTransactionStrategy.get(Operation.getOperationType(null));
         });

@@ -20,84 +20,84 @@ public class StorageImplTest {
     }
 
     @Test
-    void getFruit_notNull_notOk() {
+    void getFruit_notNullFoundFruit_throwsRuntimeException() {
         assertThrows(RuntimeException.class, () -> {
             storage.getFruit(null);
         });
     }
 
     @Test
-    void getFruit_notEmpty_notOk() {
+    void getFruit_notEmptyFoundFruit_throwsRuntimeException() {
         assertThrows(RuntimeException.class, () -> {
             storage.getFruit(" ");
         });
     }
 
     @Test
-    void add_notNull_notOk() {
+    void add_keyNull_throwsRuntimeException() {
         assertThrows(RuntimeException.class, () -> {
             storage.add(null, 10);
         });
     }
 
     @Test
-    void add_notEmpty_notOk() {
+    void add_keyFruitEmpty_throwsRuntimeException() {
         assertThrows(RuntimeException.class, () -> {
             storage.add(" ", 10);
         });
     }
 
     @Test
-    void add_quantityNegative_notOk() {
+    void add_valueNumberNegative_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> {
             storage.add("apple", -1);
         });
     }
 
     @Test
-    void set_notNull_notOk() {
+    void set_keyFruitIsNull_throwsRuntimeException() {
         assertThrows(RuntimeException.class, () -> {
             storage.set(null, 10);
         });
     }
 
     @Test
-    void set_notEmpty_notOk() {
+    void set_keyFruitEmpty_throwsRuntimeException() {
         assertThrows(RuntimeException.class, () -> {
             storage.set(" ", 10);
         });
     }
 
     @Test
-    void set_quantityNegative_notOk() {
+    void set_valueNumberNegative_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> {
             storage.set("apple", -1);
         });
     }
 
     @Test
-    void delete_notNull_notOk() {
+    void delete_keyIsNull_throwsRuntimeException() {
         assertThrows(RuntimeException.class, () -> {
             storage.delete(null, 10);
         });
     }
 
     @Test
-    void delete_notEmpty_notOk() {
+    void delete_keyFruitIsEmpty_throwsRuntimeException() {
         assertThrows(RuntimeException.class, () -> {
             storage.delete(" ", 10);
         });
     }
 
     @Test
-    void delete_quantityNegative_notOk() {
+    void delete_valueNegative_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> {
             storage.delete("apple", -1);
         });
     }
 
     @Test
-    void delete_resultMoreBalance_notOk() {
+    void delete_resultMoreBalance_throwsRuntimeException() {
         FruitTransaction fruitTransaction = new FruitTransaction(Operation.getOperationType("b"),
                 "banana", Integer.parseInt("100"));
         storage.add("banana", 10);

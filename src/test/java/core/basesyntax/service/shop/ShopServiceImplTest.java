@@ -26,14 +26,14 @@ public class ShopServiceImplTest {
     }
 
     @Test
-    void process_notNull_notOk() {
+    void process_isNull_throwsRuntimeException() {
         assertThrows(RuntimeException.class, () -> {
             shopService.process(null);
         });
     }
 
     @Test
-    void process_notEmptyFruitName_notOk() {
+    void process_fruitNameEmpty_throwsRuntimeException() {
         FruitTransaction fruitTransaction = new
                 FruitTransaction(Operation.getOperationType("s"), " ", Integer.parseInt("100"));
         List<FruitTransaction> fruitTransactions = List.of(fruitTransaction);
@@ -43,7 +43,7 @@ public class ShopServiceImplTest {
     }
 
     @Test
-    void process_negativeNumber_notOk() {
+    void process_fruitQuantityNegative_throwsRuntimeException() {
         FruitTransaction fruitTransaction = new
                 FruitTransaction(Operation.getOperationType("s"), "apple", Integer.parseInt("-1"));
         List<FruitTransaction> fruitTransactions = List.of(fruitTransaction);
