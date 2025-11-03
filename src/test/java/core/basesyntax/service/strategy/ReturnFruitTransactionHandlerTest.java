@@ -6,10 +6,8 @@ import core.basesyntax.db.Storage;
 import core.basesyntax.db.StorageImpl;
 import core.basesyntax.model.FruitTransaction;
 import core.basesyntax.model.Operation;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
